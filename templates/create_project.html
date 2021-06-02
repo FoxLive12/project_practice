@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Создание проекта</title>
+</head>
+<body>
+	{% for category, message in  get_flashed_messages(with_categories=true) %}
+			<spam class="{{ category }}">{{ message }}</spam>
+    {% endfor %}
+	<form action="" method="post" class="form-contact">
+		<p><label>Название проекта: </label> <input type="text" name="title_project" value="" requied />
+		<p><input type="submit" value="Создать"/>
+	</form>
+</body>
+</html>

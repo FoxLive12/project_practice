@@ -11,6 +11,11 @@
     <li>Email: {{ current_user.email }}</li>
     <li>Date: {{ current_user.date }}</li>
 </ul>
+<h1>Список проектов</h1>
+{% for folder in list %}
+<li>{{ folder }}</li>
+{% endfor %}
+<a href="/create_project/">Создать проект</a>
 <a href="/logout">Выйти</a>
 </body>
 </html>

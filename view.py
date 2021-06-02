@@ -1,6 +1,9 @@
 from flask import render_template, request, redirect, url_for, flash
-from app import app, Users, db, login_manager
+from app import app, Users, db, login_manager, create_project
 from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
+import os
+
+list_project = []
 
 @app.route('/')
 def index():
@@ -16,6 +19,8 @@ def register():
 			db.session.flush()
 
 			db.session.commit()
+
+			os.mkdir('project/'+str(request.form['user_name']))
 		except:
 			db.session.rollback()
 			print("Error")
@@ -25,7 +30,8 @@ def register():
 @app.route('/admin')
 @login_required
 def admin():
-	return render_template('admin.html')
+	list_project = os.listdir('project/'+current_user.user_name)
+	return render_template('admin.html', list=list_project)
 
 @app.route('/login', methods=['POST', "GET"])
 def login():
@@ -45,3 +51,16 @@ def logout():
     logout_user()
     flash("You have been logged out.")
     return redirect(url_for('login'))
+
+@app.route('/create_project/', methods=['POST', "GET"])
+@login_required
+def project():
+	if request.method == "POST":
+		try:
+			create_project(current_user.user_name, request.form['title_project'])
+			return redirect(url_for('admin'))
+		except FileExistsError:
+			flash("Проект с таким именем уже существует", 'error')
+		
+
+	return render_template('create_project.html')

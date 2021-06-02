@@ -1,9 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from config import Configuration
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_login import LoginManager, UserMixin
+import os
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
@@ -16,6 +17,9 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.query(Users).get(user_id)
+
+def create_project(username, project_title):
+	os.mkdir('project/'+username+'/'+project_title)
 
 class Users(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
