@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Авторизация</title>
+</head>
+<body>
+	<form action="" method="post" class="form-contact">
+		{% for category, message in  get_flashed_messages(with_categories=true) %}
+			<spam class="{{ category }}">{{ message }}</spam>
+    	{% endfor %}
+		<p><label>Имя пользователя: </label> <input type="text" name="user_name" value="" requied />
+		<p><label>Пароль: </label> <input type="password" name="psw" value="" requied />
+		<p><input type="submit" value="Авторизоваться" />
+	</form>
+</body>
+</html>

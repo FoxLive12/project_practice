@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Администратор</title>
+</head>
+<body>
+<h2>Logged in User details</h2>
+
+<ul>
+    <li>Username: {{ current_user.user_name }}</li>
+    <li>Email: {{ current_user.email }}</li>
+    <li>Date: {{ current_user.date }}</li>
+</ul>
+<a href="/logout">Выйти</a>
+</body>
+</html>
