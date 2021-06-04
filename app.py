@@ -5,7 +5,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_login import LoginManager, UserMixin
 import os
-
+ALLOWED_EXTENSIONS = set(['txt', 'pdf','cvs','xlsx'])
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
@@ -36,3 +36,7 @@ class Users(db.Model, UserMixin):
 
 	def check_password(self, password):
 		return check_password_hash(self.psw_hash, password)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
