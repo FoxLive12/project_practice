@@ -4,7 +4,9 @@
 	<title>Добавление файлов</title>
 </head>
 <body>
-<h1>Upload new File</h1>
+{% for message in  get_flashed_messages() %}
+	<h1>{{ message }}</h1>
+{% endfor %}
     <form action="" method=post enctype=multipart/form-data>
       <p><input type=file name=file>
          <input type=submit value=Upload>

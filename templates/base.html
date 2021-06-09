@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<title>{% block title %}Главная{% endblock %}</title>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Главная</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="/create_project/">Создание проекта</a>
+					</li>			  
+				  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Авторизация</a>
+					<ul class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
+					  <div class="button"><a class="dropdown-item" href="/login">Вход</a></div>
+					  <div class="button"><a class="dropdown-item" href="/login/register">Регистрация</a></div>
+					</ul>
+				  </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</head>
+<body class="text-center">
+	{% block content %}
+	<h1>Список проектов:</h1>
+	<div class="row" style="margin-left: 10px; margin-right: 10px;">
+		{% for item in list%}
+		<div class="col-sm-3 mt-3">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title">{{ item }}</h5>
+				<a href="#" class="btn btn-dark mt-3">Перейти к проекту</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endblock %}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

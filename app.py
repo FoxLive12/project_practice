@@ -5,7 +5,9 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash,  check_password_hash
 from flask_login import LoginManager, UserMixin
 import os
-ALLOWED_EXTENSIONS = set(['txt', 'pdf','cvs','xlsx'])
+import csv
+
+ALLOWED_EXTENSIONS = set(['txt', 'csv','xlsx'])
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
@@ -40,3 +42,13 @@ class Users(db.Model, UserMixin):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+def classification(path):
+	with open(path, "r") as f_obj:
+		reader = csv.reader(f_obj, delimiter=';')
+		data_list = []
+		for row in reader:
+			for item in row:
+				data_list.append(item)
+
+		return data_list

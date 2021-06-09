@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Создание проекта</title>
-</head>
-<body>
-	{% for category, message in  get_flashed_messages(with_categories=true) %}
-			<spam class="{{ category }}">{{ message }}</spam>
-    {% endfor %}
+{% extends "base.html" %}
+{% block title %}Создание проекта{% endblock %}
+{% block content %}
 	<form action="" method="post" class="form-contact">
-		<p><label>Название проекта: </label> <input type="text" name="title_project" value="" requied />
-		<p><input type="submit" value="Создать"/>
+	<div class="card" style="width: 20rem; margin: auto; margin-top: 150px;">
+		{% for category, message in  get_flashed_messages(with_categories=true) %}
+				<spam class="alert alert-danger">{{ message }}</spam>
+    		{% endfor %}
+		<div class="form-floating" style="margin-bottom: 3px;">
+			<input type="text" class="form-control" id="floatingInput" placeholder="Наименование проекта" name="title_project">
+			<label for="floatingInput">Наименование проекта</label>
+			<button class="w-100 btn btn-lg btn-dark mt-3" type="submit" style="color: white;">Создать проект</button>
+		</div>
+	</div>
 	</form>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Классификация данных</title>
+</head>
+<body>
+{% for item in data %}
+<p>
+	{{ item }}
+	<select>
+		{% for opt in data %}
+    		<option>{{ opt }}</option>
+  		{% endfor %}
+ 	</select>
+ </p>
+{% endfor %}
+
+<p><input type="submit" value="Подтвердить" />
+</body>
+</html>
