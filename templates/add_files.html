@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Добавление файлов</title>
-</head>
-<body>
-{% for message in  get_flashed_messages() %}
-	<h1>{{ message }}</h1>
-{% endfor %}
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Добавление файла{% endblock %}
+{% block content %}
+	<div class="row py-lg-5">
+	<div class="col-lg-6 col-md-8 mx-auto">
+		{% for message in  get_flashed_messages() %}
+			<h3>{{ message }}</h3>
+		{% endfor %}
+		<form method="post" enctype="multipart/form-data">
+				<input type="file" name="file" class="form-file-input border p-1 mt-1">
+				<input type="submit" class="btn-dark" value="Загрузить">
+		</form>
+	</div>
+	</div>
+{% endblock %}

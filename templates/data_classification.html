@@ -1,20 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Классификация данных</title>
-</head>
-<body>
-{% for item in data %}
-<p>
-	{{ item }}
-	<select>
-		{% for opt in data %}
-    		<option>{{ opt }}</option>
-  		{% endfor %}
- 	</select>
- </p>
-{% endfor %}
-
-<p><input type="submit" value="Подтвердить" />
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Классификация данных{% endblock %}
+{% block content %}
+<form method="post">
+<div class="row mt-2 ">
+	<div class="col-lg-6 col-md-8">
+		<ul class="list-group">
+			{% for item in data %}
+				<div><li class="list-group-item" style="margin-top: 5px;">{{item}}</li></div>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="col-lg-6 col-md-8 mx-auto">
+		<ul class="list-group">
+			{% for item in data %}
+				<select class="form-select" name="{{item}}" style="margin-top: 8.8px;" aria-label="Default select example">
+					{% for item_class in classes %}
+						<option>{{item_class}}</option>
+					{% endfor %}
+				</select>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<div class="col-lg text-center">
+	<input type="submit" class="w-50 btn btn-lg btn-dark text-center mt-5 mb-5" value="Подтвердить">
+</div>
+</form>
+{% endblock %}

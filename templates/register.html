@@ -6,7 +6,12 @@
 		<div class="card-body">
 			<main class="form-signin">
 				<form>
-				<h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+				{% for message in get_flashed_messages() %}
+					<div>
+						<span class=" mt-2 alert alert-danger">{{ message }}</span>
+					</div>
+				{% endfor %}
+				<h1 class="h3 mt-4 mb-3 fw-normal">Регистрация</h1>
 				<div class="form-floating mb-3">
 					<input type="username" class="form-control" id="floatingInput" placeholder="Введите ваше имя" name="user_name">
 					<label for="floatingInput">Имя пользователя</label>

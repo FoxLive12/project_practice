@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Добавление файла{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-4 mt-4">
+		{% for message in  get_flashed_messages() %}
+				<spam class="alert alert-danger">{{ message }}</spam>
+    	{% endfor %}
+		<div class="mt-4">
+			<h4>Список классов</h4>
+		</div>
+		<div class="mt-2">
+			<form action="" method="post">
+				<input type="text" class="float-rigth mr-3" id="floatingInput" placeholder="Введите имя класса" name="title_class">
+				<input class="btn-dark ml-2" name="+" type="submit" value="+">
+				<input class="btn-dark mt-3 ml-2" name="continue" type="submit" value="Продолжить">
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-4 mt-4 border border-secondary">
+			{% for item in classes %}
+			<div>
+				<li>{{ item }}</li>
+			</div>
+			{% endfor %}
+	</div>
+</div>
+
+{% endblock %}
